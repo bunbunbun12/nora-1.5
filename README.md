@@ -1,10 +1,10 @@
 # Nora-1.5
 
-## 📆 TODO <a name="todos"></a>
+## 📆 TODO <a name="todos"></a>  ~ 1 week
 - [ ] Release the inference code of Nora-1.5
 - [ ] Release all relevant model checkpoints(Pretrained, libero, SimplerEnv etc)
 - [ ] Release the training/fine-tuning code of Nora-1.5 with LeRobot Dataset
-- [ ] Release SimplerEnv evaluation code
+- [ ] Release SimplerEnv evaluation code 
 
 
 
