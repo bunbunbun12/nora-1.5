@@ -10,6 +10,11 @@ The model builds upon the NORA foundation to achieve stronger **instruction foll
 
 This repository consolidates the full open-source release of **model checkpoints**, **inference code**, **training code**, and **evaluation tools**, along with documentation and examples.
 
+<p align="center">
+  <img src="https://declare-lab.github.io/assets/images/nora-1.5-arxiv-teaser.png" width="100%">
+</p>
+
+
 ---
 
 ## 🌐 Project Website
