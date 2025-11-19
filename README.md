@@ -45,7 +45,7 @@ This repository consolidates the full open-source release of **model checkpoints
 - [ ] Release SimplerEnv evaluation code 
 
 ## Minimal Inference Sample (Will update)
-```
+```python
 from inference.modelling_expert import VLAWithExpert
 
 model = VLAWithExpert() 
@@ -55,7 +55,7 @@ outputs = model.sample_actions(PIL IMAGE,instruction,num_steps=10) ## Outputs 7 
 
 ## Citation
 
-```
+```bibtex
 @article{hung2025nora15,
   title={NORA-1.5: A Vision-Language-Action Model Trained using World Model- and Action-Based Preference Rewards},
   author={Hung, Chia-Yu and Majumder, Navonil and Deng, Haoyuan, Liu Renhang, Yankang Ang, Amir Zadeh, Chuan Li, Dorien Herremans, Ziwei Wang, and Soujanya Poria},
