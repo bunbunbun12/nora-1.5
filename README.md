@@ -18,7 +18,20 @@ This repository consolidates the full open-source release of **model checkpoints
 
 
 ---
-
+## Setup guide
+First, prepare a conda environment.
+```
+conda create -n nora1_5 python=3.10 -y
+conda activate nora1_5
+```
+Clone repository
+``` 
+git clone https://github.com/declare-lab/nora-1.5.git
+```
+Install requirements
+```
+pip install -r requirements.txt
+```
 ## 🌐 Project Website
 
 🔗 **https://declare-lab.github.io/nora-1.5**
@@ -36,24 +49,78 @@ This repository consolidates the full open-source release of **model checkpoints
 
 ---
 
-## 📦 Repository Structure (will update)
 
 
 
-## 📆 TODO <a name="todos"></a>  ~ 1 week
-- [ ] Release the inference code of Nora-1.5
-- [ ] Release all relevant model checkpoints(Pretrained, libero, SimplerEnv etc)
-- [ ] Release the training/fine-tuning code of Nora-1.5 with LeRobot Dataset
-- [ ] Release SimplerEnv evaluation code 
+## 📆 TODO <a name="todos"></a>  ~
+- [x] Release the inference code of Nora-1.5
+- [x] Release all relevant model checkpoints(Pretrained, libero, SimplerEnv etc)
+- [x] Release the training/fine-tuning code of Nora-1.5 with LeRobot Dataset
+- [x] Release SimplerEnv evaluation code 
 
 ## Minimal Inference Sample (Will update)
 ```python
 from inference.modelling_expert import VLAWithExpert
 
-model = VLAWithExpert() 
-model.to('cuda')
-outputs = model.sample_actions(PIL IMAGE,instruction,num_steps=10) ## Outputs 7 Dof action of normalized and unnormalized action
+model = VLAWithExpert.from_pretrained("declare-lab/nora-1.5") 
+outputs = model.sample_actions(PIL IMAGE,instruction,num_steps=10) ## Outputs 7 Dof action of normalized action
 ```
+## How to train/finetune on your own Lerobot dataset.
+To train/finetune NORA-1.5 on your own Lerobot dataset, there are 2 main steps that is required. 
+1: Compute normalization statistic of your Lerobot dataset. Note that NORA-1.5 is pretrained in delta action space, hence we will need to compute the normalization statistic for delta action. 
+Run the script 
+```python python utils/compute_norm_stats.py --dataset_path='YOUR LEROBOT DATASET' --delta_transform```
+This will create a norm_stats.json in your lerobot dataset local directory, or remote directory (base on whether your dataset is local on remote).
+
+
+If your dataset is in delta action space and you have already computed the normalization statistic, you may skip this step.
+
+2: 
+Modify the REMAP_KEY for mapping dictionary key name in your lerobot dataset.
+https://github.com/declare-lab/nora-1.5/blob/be1376679daad51601e96889efaded00d7243d62/training/lerobot/train_lerobot.py#L37-L42
+Set up training hyperparameter, dataset_dir, output_dir in training/lerobot/train_lerobot.py
+
+We use huggingface's accelerator for training. Set up your accelerate config via ```python accelerate config ```
+
+
+Run training with accelerate launch --config_file='config.yaml' training/lerobot/train_lerobot.py!!!
+
+
+We jointly optimize cross entropy loss(on FAST token) and flow matching loss on action expert, hence we can use sample discrete action via FAST tokenizer, or continous action via flow matching (action expert). Base on our experiment on Galaxea A1, we found that discrete action performs better than continous action. However, in simulation such as SimplerEnv and LIBERO, continous action outpeform discrete action. Feel free to try both action sampling method.
+
+## 🤗 Model Zoo
+
+<table>
+  <tr>
+    <th>Model Name</th>
+    <th>Backbone</th>
+    <th>Note</th>
+  </tr>
+  <tr>
+    <td><a href="https://huggingface.co/declare-lab/nora-1.5">declare-lab/nora-1.5</a></td>
+    <td>declare-lab/nora-1.5</td>
+     <td>Pretrained on OXE. Jointly optimize cross entropy loss and flow matching loss</a></td>
+  </tr>
+  <tr>
+    <td><a href=https://huggingface.co/declare-lab/nora-1.5-fractal-dpo">declare-lab/nora-1.5-fractal-dpo</a></td>
+    <td>declare-lab/nora-1.5</td>
+    <td>Finetuned on fractal and perform DPO via the method detailed in the paper</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://huggingface.co/declare-lab/nora-1.5-libero">declare-lab/nora-1.5-libero</a></td>
+    <td>declare-lab/nora-1.5</td>
+    <td>Finetuned on 4 LIBERO subset mixed</a></td>
+  </tr>
+</table>
+
+
+## SimplerEnv evaluation
+Navigate to  https://github.com/hungchiayu1/SimplerEnv-OpenVLA
+
+
+## Acknowledgement
+This repository is built based on [OpenVLA](https://github.com/openvla/openvla), [Open X-Embodiment](https://github.com/google-deepmind/open_x_embodiment?tab=readme-ov-file),[transformers](https://github.com/huggingface/transformers), [accelerate](https://github.com/huggingface/accelerate), [Qwen2.5 VL](https://github.com/QwenLM/Qwen2.5-VL), [Lerobot](https://github.com/huggingface/lerobot), [SpatialVLA](https://github.com/SpatialVLA/SpatialVLA).  Thanks!
+. Thanks for their contribution!
 
 ## Citation
 
